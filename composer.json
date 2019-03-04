@@ -1,0 +1,10 @@
+{
+  "name": "drupal/commerce_demo_graphql",
+  "type": "drupal-module",
+  "require": {
+    "drupal/commerce": "^2.0",
+    "drupal/commerce_demo": "^1.0",
+    "drupal/graphql": "^3.0",
+    "drupal/graphql_search_api": "^1.0"
+  }
+}
