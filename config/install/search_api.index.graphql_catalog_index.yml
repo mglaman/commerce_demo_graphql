@@ -1,0 +1,200 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.commerce_product.field_brand
+    - field.storage.commerce_product.field_product_categories
+    - field.storage.commerce_product.field_special_categories
+    - field.storage.commerce_product.variations
+    - field.storage.commerce_product_variation.field_images
+    - search_api.server.database
+  module:
+    - taxonomy
+    - commerce_product
+    - file
+    - search_api
+id: graphql_catalog_index
+name: 'GraphQL Catalog Index'
+description: ''
+read_only: false
+field_settings:
+  alt:
+    label: 'Variations » Product variation » Images » Alternative text'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'variations:entity:field_images:alt'
+    type: string
+    dependencies:
+      config:
+        - field.storage.commerce_product.variations
+        - field.storage.commerce_product_variation.field_images
+      module:
+        - commerce_product
+  brand_name:
+    label: 'Brand » Taxonomy term » Name'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'field_brand:entity:name'
+    type: text
+    boost: !!float 2
+    dependencies:
+      config:
+        - field.storage.commerce_product.field_brand
+      module:
+        - taxonomy
+        - taxonomy
+  category_name:
+    label: 'Categories » Taxonomy term » Name'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'field_product_categories:entity:name'
+    type: text
+    boost: !!float 2
+    dependencies:
+      config:
+        - field.storage.commerce_product.field_product_categories
+      module:
+        - taxonomy
+        - taxonomy
+  field_brand:
+    label: Brand
+    datasource_id: 'entity:commerce_product'
+    property_path: field_brand
+    type: integer
+    dependencies:
+      config:
+        - field.storage.commerce_product.field_brand
+  field_product_categories:
+    label: Categories
+    datasource_id: 'entity:commerce_product'
+    property_path: field_product_categories
+    type: integer
+    dependencies:
+      config:
+        - field.storage.commerce_product.field_product_categories
+  field_special_categories:
+    label: 'Special categories'
+    datasource_id: 'entity:commerce_product'
+    property_path: field_special_categories
+    type: integer
+    dependencies:
+      config:
+        - field.storage.commerce_product.field_special_categories
+  height:
+    label: 'Variations » Product variation » Images » Height'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'variations:entity:field_images:height'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.commerce_product.variations
+        - field.storage.commerce_product_variation.field_images
+      module:
+        - commerce_product
+  price_currency_code:
+    label: 'Variations » Product variation » Price » Currency code'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'variations:entity:price:currency_code'
+    type: string
+    dependencies:
+      config:
+        - field.storage.commerce_product.variations
+      module:
+        - commerce_product
+        - commerce_product
+  price_number:
+    label: 'Variations » Product variation » Price » Number'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'variations:entity:price:number'
+    type: string
+    dependencies:
+      config:
+        - field.storage.commerce_product.variations
+      module:
+        - commerce_product
+        - commerce_product
+  product_id:
+    label: ID
+    datasource_id: 'entity:commerce_product'
+    property_path: product_id
+    type: integer
+    dependencies:
+      module:
+        - commerce_product
+  product_type:
+    label: 'Product type'
+    datasource_id: 'entity:commerce_product'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - commerce_product
+  product_uuid:
+    label: UUID
+    datasource_id: 'entity:commerce_product'
+    property_path: uuid
+    type: string
+    dependencies:
+      module:
+        - commerce_product
+  special_name:
+    label: 'Special categories » Taxonomy term » Name'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'field_special_categories:entity:name'
+    type: text
+    boost: !!float 2
+    dependencies:
+      config:
+        - field.storage.commerce_product.field_special_categories
+      module:
+        - taxonomy
+        - taxonomy
+  title:
+    label: Title
+    datasource_id: 'entity:commerce_product'
+    property_path: title
+    type: text
+    boost: !!float 5
+    dependencies:
+      module:
+        - commerce_product
+  url:
+    label: 'Variations » Product variation » Images » File » URI » Root-relative file URL'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'variations:entity:field_images:entity:uri:url'
+    type: string
+    dependencies:
+      config:
+        - field.storage.commerce_product.variations
+        - field.storage.commerce_product_variation.field_images
+      module:
+        - commerce_product
+        - file
+        - file
+  width:
+    label: 'Variations » Product variation » Images » Width'
+    datasource_id: 'entity:commerce_product'
+    property_path: 'variations:entity:field_images:width'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.commerce_product.variations
+        - field.storage.commerce_product_variation.field_images
+      module:
+        - commerce_product
+datasource_settings:
+  'entity:commerce_product':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: database
